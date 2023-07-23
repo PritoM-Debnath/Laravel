@@ -12,6 +12,9 @@ trait StudentRecordRepo{
         return StudentRecord::find($id);
     }
     public static function Create(array $data): StudentRecord{
-        return StudentRecord::create($data);
+        //return StudentRecord::create($data);
+        $StudentRecord = new StudentRecord($data);
+        $StudentRecord->save();
+        return $StudentRecord;
     }
 }

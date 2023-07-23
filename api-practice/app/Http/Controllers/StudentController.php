@@ -57,7 +57,6 @@ class StudentController extends Controller
     public function create(Request $request){
         try{
             $validatedData = $request->validate([
-                'id'=>'required|integer',
                 'Name'=>'required|string',
                 'Tid'=>'required|integer'
             ]);

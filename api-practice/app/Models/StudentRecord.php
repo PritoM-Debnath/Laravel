@@ -15,5 +15,5 @@ class StudentRecord extends Model
         return $this->belongsTo(TeacherRecord::class);
     }
 
-    protected $fillable = ['id','Name', 'Tid'];
+    protected $fillable = ['Name', 'Tid'];
 }
