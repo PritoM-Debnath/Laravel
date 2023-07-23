@@ -17,4 +17,25 @@ trait StudentRecordRepo{
         $StudentRecord->save();
         return $StudentRecord;
     }
+    public static function deleteRecord(string $id){
+        $student= StudentRecord::find($id);
+        if(!$student){
+            return false;
+        }
+        $student->delete($student);
+        return $student;
+    }
+    public function updateRecord(string $id,array $data): bool
+    {
+        $studentRecord=StudentRecord::find($id);
+
+        if(!$studentRecord)
+        {
+            return false;
+        }
+
+        $studentRecord->update($data);
+        return true;
+    }
+
 }

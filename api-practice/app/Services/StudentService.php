@@ -17,4 +17,28 @@ class StudentService
     public function getCreate(array $data){
         return StudentRecordRepo::Create($data);
     }
+    public function getDelete(int $id){
+        return DB::transaction(function () use ($id){
+            $student = StudentRecordRepo::StudentRecordByID($id);
+            if(!$student){
+                return false;
+            }
+            $student->deleteRecord($id);
+            return $student;
+        });
+    }
+    public function getUpdate(string $id, array $data)
+    {
+        return DB::transaction(function () use ($id, $data) {
+            $studentRecord = StudentRecordRepo::StudentRecordByID($id);
+
+            if (!$studentRecord) {
+                return null;
+            }
+
+            $studentRecord->updateRecord($id, $data);
+
+            return $studentRecord;
+        });
+    }
 }
