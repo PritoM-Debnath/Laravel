@@ -7,6 +7,6 @@ use App\Models\TeacherRecord;
 trait TeacherRecordRepo
 {
     public static function teacherRecords(){
-        return teacherRecords::orderby('Name');
+        return TeacherRecords::orderby('Name');
     }
 }
