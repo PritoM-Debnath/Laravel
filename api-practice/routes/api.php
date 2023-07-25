@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 require __DIR__ . '/base/StudentRecord.php';
+require __DIR__ . '/base/TeacherRecord.php';
