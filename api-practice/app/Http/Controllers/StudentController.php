@@ -12,6 +12,7 @@ class StudentController extends Controller
     private $getCreate;
     private $getDelete;
     private $getUpdate;
+    private $getall;
 
     public function __construct( StudentService $getStudents, StudentService $getStudentById, StudentService $getCreate, StudentService $getDelete, StudentService $getUpdate){
         $this->getStudents = $getStudents;
