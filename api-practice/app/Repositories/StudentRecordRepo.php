@@ -5,10 +5,10 @@ namespace App\Repositories;
 use App\Models\StudentRecord;
 
 trait StudentRecordRepo{
-    public static function StudentRecords(){
+    public static function studentRecords(){
         return StudentRecord::orderby('Name');
     }
-    public static function StudentRecordByID(int $id): ?StudentRecord{
+    public static function studentRecordByID(int $id): ?StudentRecord{
         return StudentRecord::find($id);
     }
     public static function Create(array $data): StudentRecord{
