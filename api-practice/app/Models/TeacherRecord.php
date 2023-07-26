@@ -14,5 +14,5 @@ class TeacherRecord extends Model
         return $this->hasone(StudentRecord::class);
     }
 
-    protected $fillable = ['id','Name'];
+    protected $fillable = ['Name'];
 }
