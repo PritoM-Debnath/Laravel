@@ -12,4 +12,18 @@ trait TeacherRecordRepo
     public static function teacherRecordByID(int $id): ?TeacherRecord{
         return TeacherRecord::find($id);
     }
+    public static function teacherStore(array $data): TeacherRecord{
+        //return StudentRecord::create($data);
+        $teacher = new TeacherRecord($data);
+        $teacher->save();
+        return $teacher;
+    }
+    public static function teacherDestroy(string $id){
+        $teacher= TeacherRecord::find($id);
+        if(!$teacher){
+            return false;
+        }
+        $teacher->delete($teacher);
+        return $teacher;
+    }
 }
