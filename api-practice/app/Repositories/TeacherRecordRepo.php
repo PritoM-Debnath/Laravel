@@ -26,4 +26,13 @@ trait TeacherRecordRepo
         $teacher->delete($teacher);
         return $teacher;
     }
+    public static function updateRecord(int $id, array $data){
+        $teacher=TeacherRecord::find($id);
+        if(!$teacher)
+        {
+            return false;
+        }
+        $teacher->update($data);
+        return $teacher;
+    }
 }

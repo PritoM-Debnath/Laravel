@@ -35,7 +35,6 @@ class StudentService
             if (!$studentRecord) {
                 return null;
             }
-
             $studentRecord->updateRecord($id, $data);
 
             return $studentRecord;

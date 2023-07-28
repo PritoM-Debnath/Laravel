@@ -27,4 +27,16 @@ class TeacherService{
             return $teacher;
         });
     }
+    public function putUpdate(int $id, array $data){
+        return DB::transaction(function () use ($id, $data) {
+            $teacher = TeacherRecordRepo::teacherRecordByID($id);
+
+            if (!$teacher) {
+                return null;
+            }
+            $teacher->updateRecord($id, $data);
+
+            return $teacher;
+        });
+    }
 }

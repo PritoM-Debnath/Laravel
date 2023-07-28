@@ -33,11 +33,11 @@ class TeacherController extends Controller
     }
     public function show(int $id){
         try{
-            $student = $this->teacher->getTeachertById($id);
+            $teacherRecord = $this->teacher->getTeachertById($id);
             return response()->json([
                 'status' => true,
                 'message' => 'Students data retrived',
-                'data' => $student,
+                'data' => $teacherRecord,
             ], 200);            
         }catch(\Exception $e){
             return response()->json([
@@ -68,7 +68,7 @@ class TeacherController extends Controller
     }
     public function destroy(int $id){
         try{
-            $student = $this->teacher->destroyTeacher($id);
+            $teacherRecord = $this->teacher->destroyTeacher($id);
             return response()->json([
                 'status' => true,
                 'message' => 'Teacher deleted ',
@@ -82,5 +82,50 @@ class TeacherController extends Controller
             ], 500);
         }
     }
+    public function edit(string $id)
+    {
+        try {
+            $teacherRecord = $this->teacher->getTeachertById($id);
+    
+            if (!$teacherRecord) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Record not found.',
+                ], 404);
+            }
 
+            return response()->json([
+                'status' => true,
+                'message' => 'Retrieve record for editing.',
+                'data' => $teacherRecord,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to retrieve student record for editing. Please try again later.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function update(int $id,Request $request){
+        try {
+            $validatedData = $request->validate([
+                'Name'=>'Required|string'
+            ]);
+    
+            $teacherRecord = $this->teacher->putUpdate($id, $validatedData);
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Updated successfully.',
+                'data' => $teacherRecord,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Update failed.',
+                'data' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
